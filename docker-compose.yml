@@ -1,0 +1,20 @@
+version: '3'
+services:
+  postgres:
+    image: totofunku/sql-cours
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminadmin
+    ports:
+      - "1234:5432"
+      
+  nodejs-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    depends_on:
+      - postgres
+
